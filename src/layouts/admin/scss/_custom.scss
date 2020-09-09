@@ -1,0 +1,10 @@
+// Here you can add other styles
+.c-app {
+  display: flex;
+  height: 100vh;
+}
+
+button.no-box-shadow:active,
+button.no-box-shadow:focus {
+  box-shadow: none;
+}

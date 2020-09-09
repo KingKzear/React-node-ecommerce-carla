@@ -1,0 +1,33 @@
+.about-us-container {
+  .page-top {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .body {
+    .header {
+      
+    }
+    .content {
+      .card-item {  
+        display: inline-block;
+        padding: 10px 20px;
+        .image-container {
+          width: 100%;
+        }
+        .name {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-top: 20px;
+          
+          &.center {
+            text-align: center;
+          }
+        }
+        .desc {
+          text-align: center;
+        }
+        
+      }
+    } 
+  }
+}

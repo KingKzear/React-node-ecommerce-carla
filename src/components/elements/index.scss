@@ -1,0 +1,30 @@
+.button {
+  cursor: pointer;
+  background: var(--grey-button-back-color);
+  color: #fff;
+  border: 0;
+  margin: 10px auto;
+  width: 200px;
+  font-weight: bold;
+  border-radius: 0;
+  padding: 12px;
+  text-align: center;
+
+  svg {
+    margin-bottom: 2px;
+  }
+}
+
+label {
+  &.right {
+    margin-left: 10px;
+  }
+  &.top {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 0 !important;
+  }
+  &.left {
+    margin-right: 5px;
+  }
+}

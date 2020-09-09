@@ -1,0 +1,21 @@
+.cart-container {
+  padding: 40px;
+
+  .title {
+    font-size: 45px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .empty {
+    font-size: 20px;
+    font-style: italic;
+  }
+  .return-to-shop {
+    margin-top: 40px;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+}

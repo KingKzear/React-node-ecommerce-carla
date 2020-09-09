@@ -1,0 +1,59 @@
+.search-result-container {
+  padding: 20px 0;
+  
+  .filter {
+    width: 300px;
+
+    .filter-item {
+      select {
+        width: 80%;
+      }
+      .bordered-container {
+        padding: 10px 30px;
+        border: 1px solid gray;
+        border-radius: 2px;
+        width: 80%;
+      }
+      .price-range {
+        width: 80%;
+        .input-values {
+          display: flex;
+          justify-content: start;
+          
+          div.splitter {
+            padding: 0 10px;
+          }
+          div {
+            display: flex;
+            justify-content: space-between;
+            label.left {
+              margin-bottom: 0 !important;
+              margin-top: 2px;
+            }
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .reset-button {
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .result-container {
+    width: calc(100% - 300px);
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      float: right;
+    }
+  }
+}

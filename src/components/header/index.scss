@@ -1,0 +1,38 @@
+.floating-header {
+  .header-container {
+    .utility-bar {
+      border-bottom: 1px solid lightgray;
+
+      .top-nav {
+        display: flex;
+        justify-content: space-between;  
+        padding: 4px;
+      }
+    }
+
+    .banner {
+      text-align: center;
+      cursor: pointer;
+      
+      img{
+        width: 40%;
+        margin: 2% auto 1%;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      padding: 4px 6px;
+      color: black;
+      font-size: 12px;
+    }
+
+    &.bottom {
+      border-top: 1px solid lightgray;
+      margin-top: 60px;
+      .utility-bar {
+        border-bottom: none;
+      }
+    }
+  }
+}
