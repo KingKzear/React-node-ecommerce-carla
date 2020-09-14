@@ -1,24 +1,40 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-
-const API_URL = "http://localhost:8080/api/test/";
+import {get, post} from './request'
+import { ADMIN_GET_ALL_USERS, ADMIN_CREATE_ADDRESS, ADMIN_CREATE_CUSTOMER } from './apiUrls'
 
 class UserService {
-  getPublicContent() {
-    return axios.get(API_URL + "all");
+  getAllUsers() {
+    console.log(authHeader())
+    return get({
+      url: ADMIN_GET_ALL_USERS(), 
+      headers: authHeader() 
+    })
   }
 
-  getUserBoard() {
-    return axios.get(API_URL + "user", { headers: authHeader() });
+  saveAddress(address) {
+    return post({
+      url: ADMIN_CREATE_ADDRESS(),
+      data: address,
+      headers: authHeader()
+    });
   }
 
-  getModeratorBoard() {
-    return axios.get(API_URL + "mod", { headers: authHeader() });
+  saveUserInfo(user) {
+    return post({
+      url: ADMIN_CREATE_CUSTOMER(),
+      data: user,
+      headers: authHeader()
+    });
   }
 
-  getAdminBoard() {
-    return axios.get(API_URL + "admin", { headers: authHeader() });
-  }
+  // getModeratorBoard() {
+  //   return axios.get(API_URL + "mod", { headers: authHeader() });
+  // }
+
+  // getAdminBoard() {
+  //   return axios.get(API_URL + "admin", { headers: authHeader() });
+  // }
 }
 
 export default new UserService();

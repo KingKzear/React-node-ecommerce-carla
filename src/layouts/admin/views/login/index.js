@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 import {
   CButton,
   CCard,
@@ -17,11 +18,35 @@ import {
 import CIcon from '@coreui/icons-react'
 import history from './../../../../history'
 import AdminWrapper from '../wrapper'
+import { LoginValidator } from '../../../../util/validator'
+import useForm from './../../../../util/useForm'
+import AuthService from './../../../../service/auth.service'
+import { loginSuccess } from './../../../../actions/auth'
+import './index.scss'
 
-const Login = () => {
-  const onLoginClick = () => {
-    history.push('/admin/dashboard')
+const Login = (props) => {
+  const { loginSuccess } = props
+  
+  const onLogin = () => {
+    AuthService.login(values.username, values.password)
+    .then(response=>{
+      if (response.data.accessToken) {
+        console.log(response.data)
+        loginSuccess({...response.data})
+        history.push('/admin/dashboard')
+      }
+
+      return response.data;
+    }) 
   }
+
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useForm(onLogin, LoginValidator);
+
 
   return (
     <AdminWrapper>
@@ -32,28 +57,34 @@ const Login = () => {
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
-                    <CForm>
+                    <CForm onSubmit={handleSubmit}>
                       <h1>Login</h1>
                       <p className="text-muted">Sign In to your account</p>
-                      <CInputGroup className="mb-3">
+                      <CInputGroup className={`${errors.username ? 'bottom-0' : 'mb-3'}`}>
                         <CInputGroupPrepend>
                           <CInputGroupText>
                             <CIcon name="cil-user" />
                           </CInputGroupText>
                         </CInputGroupPrepend>
-                        <CInput type="text" placeholder="Username" autoComplete="username" />
+                        <CInput type="text" name='username' placeholder="Username" autoComplete="username" onChange={handleChange}/>
                       </CInputGroup>
-                      <CInputGroup className="mb-4">
+                      {errors.username && (
+                        <p className="help is-danger">{errors.username}</p>
+                      )}
+                      <CInputGroup className={`${errors.username ? 'bottom-0' : 'mb-4'}`}>
                         <CInputGroupPrepend>
                           <CInputGroupText>
                             <CIcon name="cil-lock-locked" />
                           </CInputGroupText>
                         </CInputGroupPrepend>
-                        <CInput type="password" placeholder="Password" autoComplete="current-password" />
+                        <CInput type="password" name='password' placeholder="Password" autoComplete="current-password" onChange={handleChange}/>
                       </CInputGroup>
+                      {errors.password && (
+                        <p className="help is-danger">{errors.password}</p>
+                      )}
                       <CRow>
                         <CCol xs="6">
-                          <CButton color="primary" className="px-4" onClick={onLoginClick}>Login</CButton>
+                          <CButton color="primary" className="px-4" type='submit'>Login</CButton>
                         </CCol>
                         <CCol xs="6" className="text-right">
                           <CButton color="link" className="px-0">Forgot password?</CButton>
@@ -68,7 +99,7 @@ const Login = () => {
                       <h2>Sign up</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                      <Link to="/register">
+                      <Link to="/admin/register">
                         <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
                       </Link>
                     </div>
@@ -83,4 +114,19 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      loginSuccess: (user) => {
+          dispatch(loginSuccess(user))
+      },
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

@@ -44,3 +44,10 @@
 
   --page-min-height: calc(100vh - 300px);
 }
+
+p.is-danger {
+  color: red;
+  margin: 0;
+  padding-left: 20px;
+  font-size: .8em;
+}

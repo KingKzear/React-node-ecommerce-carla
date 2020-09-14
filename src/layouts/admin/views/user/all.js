@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CBadge,
   CDataTable,
@@ -13,9 +13,9 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import TheLayout from './../../containers/TheLayout'
+import UserService from './../../../../service/user.service'
 
-import usersData from '../users/UsersData'
-const fields = ['name','registered', 'role', 'status', 'action']
+const fields = ['display_name', 'username', 'email', 'phone','address', 'roles', 'status', 'action']
 
 const getBadge = status => {
   switch (status) {
@@ -28,6 +28,25 @@ const getBadge = status => {
 }
 
 const AllUsers = () => {
+  const [users, setUsers] = useState([])
+
+  useEffect(()=>{
+    UserService.getAllUsers()
+    .then(res=> {
+      if(res && res.data) {
+        setUsers(res.data)
+      }
+    })
+  }, [])
+
+  const onClickEdit = (user) => {
+    console.log(user.id)
+  }
+
+  const onClickDelete = (user) => {
+    console.log(user.id)
+  }
+
   return (
     <TheLayout>
       <CCard>
@@ -50,11 +69,26 @@ const AllUsers = () => {
         </CCardHeader>
         <CCardBody>
           <CDataTable
-              items={usersData}
+              items={users}
               fields={fields}
               itemsPerPage={5}
               pagination
               scopedSlots = {{
+                'address':(item)=>(
+                  <td>
+                    {item.v ? item.address : ''}
+                  </td>
+                ),
+                'phone':(item)=>(
+                  <td>
+                    {item.phone ? item.phone : ''}
+                  </td>
+                ),
+                'roles':(item)=>(
+                  <td>
+                    {item.roles.map(el=>el.name).join(', ')}
+                  </td>
+                ),
                 'status':
                 (item)=>(
                   <td>
@@ -64,7 +98,10 @@ const AllUsers = () => {
                     </td>
                   ),
                 'action': (item)=>(
-                  <td><CButton color='warning' style={{marginRight: 4}}><CIcon name='cil-pencil'/></CButton><CButton color='danger'><CIcon name='cil-trash'/></CButton></td>
+                  <td>
+                    <CButton color='warning' style={{marginRight: 4}} onClick={()=>onClickEdit(item)}><CIcon name='cil-pencil'/></CButton>
+                    <CButton color='danger' onClick={()=>onClickDelete(item)}><CIcon name='cil-trash'/></CButton>
+                  </td>
                 )               
               }}
             />

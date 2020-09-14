@@ -8,8 +8,18 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { connect } from 'react-redux'
+import history from './../../../history'
+import { logOut } from './../../../actions/auth'
 
-const TheHeaderDropdown = () => {
+
+const TheHeaderDropdown = (props) => {
+  const { logout } = props
+  const onLogout = () => {
+    localStorage.setItem("user",null)
+    history.push('/admin/login')
+  }
+
   return (
     <CDropdown
       inNav
@@ -26,7 +36,7 @@ const TheHeaderDropdown = () => {
         </div>
       </CDropdownToggle>
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownItem
+         <CDropdownItem
           header
           tag="div"
           color="light"
@@ -34,7 +44,7 @@ const TheHeaderDropdown = () => {
         >
           <strong>Account</strong>
         </CDropdownItem>
-        <CDropdownItem>
+        {/*<CDropdownItem>
           <CIcon name="cil-bell" className="mfe-2" /> 
           Updates
           <CBadge color="info" className="mfs-auto">42</CBadge>
@@ -79,8 +89,8 @@ const TheHeaderDropdown = () => {
           Projects
           <CBadge color="primary" className="mfs-auto">42</CBadge>
         </CDropdownItem>
-        <CDropdownItem divider />
-        <CDropdownItem>
+        <CDropdownItem divider /> */}
+        <CDropdownItem onClick={onLogout}>
           <CIcon name="cil-lock-locked" className="mfe-2" /> 
           Lock Account
         </CDropdownItem>
@@ -89,4 +99,20 @@ const TheHeaderDropdown = () => {
   )
 }
 
-export default TheHeaderDropdown
+const mapStateToProps = (state) => {
+  return {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      logOut: () => {
+          dispatch(logOut())
+      },
+  }
+};
+
+export default  connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TheHeaderDropdown)
+

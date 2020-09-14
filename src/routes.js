@@ -17,6 +17,7 @@ import Register from './layouts/authentication/register';
 import Cart from './layouts/cart';
 
 import AdminLogin from './layouts/admin/views/login'
+import AdminRegister from './layouts/admin/views/login/register'
 import Dashboard from './layouts/admin/views/dashboard/Dashboard';
 import CreateUser from './layouts/admin/views/user/create';
 import AllUsers from './layouts/admin/views/user/all';
@@ -48,6 +49,7 @@ function Routes (props) {
         <Route path='/cart' component={Cart}/>
 
         <Route path='/admin/login' component={AdminLogin}/>
+        <Route path='/admin/register' component={AdminRegister}/>
         <Route path='/admin/dashboard' component={Dashboard}/>
         <Route path='/admin/user/create' component={CreateUser}/>
         <Route path='/admin/user/all' component={AllUsers}/>
