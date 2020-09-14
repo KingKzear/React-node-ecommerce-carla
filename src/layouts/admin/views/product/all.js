@@ -25,9 +25,9 @@ const AllProducts = () => {
   return (
     <TheLayout>
       <CCard>
-        <CForm inline>
+        <CForm>
           <CRow className='p-2'>
-            <CCol xs='4' className='pl-4'>
+            <CCol xs='4' className='pl-4 d-inline-flex'>
               <CInput
                   className="mr-sm-2"
                   placeholder="Search"
