@@ -1,8 +1,8 @@
 export function LoginValidator(values) {
   let errors = {};
-  if(!values.username) {
-    errors.username = 'User name is required';
-  } 
+  if (!values.username) {
+    errors.username = 'E-mail is required';
+  }
   if (!values.password) {
     errors.password = 'Password is required';
   }
@@ -11,20 +11,23 @@ export function LoginValidator(values) {
 
 export function SignupValidator(values) {
   let errors = {};
-  if(!values.username) {
-    errors.username = 'User name is required';
-  } 
+  if (!values.firstname) {
+    errors.firstname = 'First name is required';
+  }
+  if (!values.lastname) {
+    errors.lastname = 'Last name is required';
+  }
   if (!values.email) {
     errors.email = 'Email address is required';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
-  if(!values.password) {
+  if (!values.password) {
     errors.password = 'Password is required';
   }
-  if(!values.repeat_password) {
+  if (!values.repeat_password) {
     errors.repeat_password = 'Confirm your password';
-  } else if( values.password != values.repeat_password) {
+  } else if (values.password != values.repeat_password) {
     errors.password = 'Password is mismatching'
     errors.repeat_password = 'Password is mismatching'
   }
@@ -33,21 +36,21 @@ export function SignupValidator(values) {
 
 export function UserCreateFormValidator(values) {
   let errors = {};
-  if(!values.username) {
+  if (!values.username) {
     errors.username = 'User name is required';
-  } 
+  }
   if (!values.email) {
     errors.email = 'Email address is required';
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = 'Email address is invalid';
   }
-  if(!values.password) {
+  if (!values.password) {
     errors.password = 'Password is required';
   }
-  if(!values.customer_number) {
+  if (!values.customer_number) {
     errors.customer_number = 'Customer number is required';
   }
-  if(!values.phone) {
+  if (!values.phone) {
     errors.phone = 'Phone number is required';
   }
 }

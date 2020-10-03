@@ -1,6 +1,7 @@
 .menu-container {
   background: #666;
-  height: 40px;
+  height: 65px;
+  align-items: center;
   .nav-item-container {
     padding: 0 4%;
     position: relative;
@@ -23,13 +24,13 @@
         z-index: 10;
       }
     }
-    
+
     .nav-item:hover {
       .sub-menu-item {
         visibility: visible;
-        // transform: scaleY(1); 
+        // transform: scaleY(1);
         max-height: 600px;
-        transition: max-height 2s ease
+        transition: max-height 2s ease;
       }
     }
 

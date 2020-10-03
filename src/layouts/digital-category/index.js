@@ -3,6 +3,7 @@ import Main from './../../components/container'
 import { Container, Row } from 'react-bootstrap'
 import CategoryItem from './category-item'
 import './index.scss'
+import Button from '@material-ui/core/Button';
 
 function DigitalCategory(props) {
   const mainUrl = 'https://c.zmags.com/assets/images/5d02a59efaf7ea08535b4905-optimized.jpeg'
@@ -33,18 +34,20 @@ function DigitalCategory(props) {
 
     let result = []
     data.forEach((el, index) => {
-      result.push(<CategoryItem key={index} item={el}/>)
+      result.push(<CategoryItem key={index} item={el} />)
     });
     return result;
   }
 
-  return(
+  return (
     <Main>
       <Container className='digital-category-container'>
         <div className='top'>
           <div className='main-image'>
-            <img src={mainUrl} className='w-100'/>
-            <div className='button'>SHOP NOW</div>
+            <img src={mainUrl} className='w-100' />
+            <Button variant="contained" color="primary" className='button'>
+              SHOP NOW
+            </Button>
           </div>
           <div className='warning'>Retailers: Please remember to LOGIN before shopping the Digital Catalogs (LOGIN HERE)</div>
         </div>

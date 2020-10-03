@@ -19,6 +19,7 @@ export const ADMIN_GET_ALL_USERS = () => {
 }
 
 export const ADMIN_CREATE_ADDRESS = () => {
+    console.log(API_URL)
     return `${API_URL}/address/save`;
 }
 
