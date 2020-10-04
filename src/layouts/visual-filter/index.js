@@ -7,34 +7,35 @@ import './index.scss'
 function VisualFilter(props) {
   const [level, setLevel] = useState(0)
   const [filterData, setFilterData] = useState({})
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [])
 
   const onItemClick = (filter) => {
-    if(level < 3) {
+    if (level < 3) {
       setLevel(level + 1)
-      setFilterData({...filterData, ...filter})
+      setFilterData({ ...filterData, ...filter })
     } else {
-      console.log(filterData)
+      console.log("filterData-------------->",filterData)
       //TODO: navigate to search result page with filtered data
       history.push('/search-result')
     }
   }
 
   const onClickViewAll = () => {
-    console.log(filterData)
+    console.log("filterData-------------->",filterData)
     //TODO: navigate to search result page with filtered data
     history.push('/search-result')
   }
 
-  return(
+  return (
     <Main>
       <div className='visual-filter-container'>
         <div className='filter-area'>
-          <img src='https://c.zmags.com/assets/images/5bc0c8b5cf2e0f7a92155c86-optimized.jpeg' className='w-100 h-100'/>
+          <img src='https://c.zmags.com/assets/images/5bc0c8b5cf2e0f7a92155c86-optimized.jpeg' className='w-100 h-100' />
+          <div className='overlay w-100 h-100' style={{ backgroundColor: '#000', opacity: 0.3 }}></div>
           <div className='overlay'>
-            <FilterItems level={level} onItemClick={onItemClick} onClickViewAll={onClickViewAll}/>
+            <FilterItems level={level} onItemClick={onItemClick} onClickViewAll={onClickViewAll} />
           </div>
         </div>
       </div>

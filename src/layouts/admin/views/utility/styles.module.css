@@ -1,0 +1,42 @@
+.container {
+  margin-top: 3vh;
+}
+
+.locationDiv {
+  width: 100%;
+  background-color: #db4b31;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.selectDiv {
+  width: 100%;
+  height: 55px;
+  /* background-color: #fff; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  border-radius: 19px;
+}
+
+.txtcss {
+  font-size: 17px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.allusers {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3vh;
+}

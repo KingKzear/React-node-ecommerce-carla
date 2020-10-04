@@ -17,86 +17,184 @@ import {
 import DualListBox from 'react-dual-listbox';
 import TheLayout from './../../containers/TheLayout'
 import 'react-dual-listbox/lib/react-dual-listbox.css';
+import { withStyles } from '@material-ui/core/styles';
+import { Container, Card, CardBody, Collapse, Col, Row, CardText } from 'reactstrap';
+import Button from '@material-ui/core/Button';
+import Styles from './styles.module.css'
+import FixedTextField from '../../../../components/FixedTextField'
+import TransferList from '../../../../components/TransferList'
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
+const CssTextField = withStyles({
+  root: {
+    '& label': {
+      fontFamily: 'Roboto',
+      fontStyle: 'normal',
+      fontWeight: 'bold',
+      fontSize: '150%',
+      alignItems: 'center',
+      textAlign: 'center',
+
+      color: ' #000',
+      transform: 'translate(22px, 16px) scale(1)'
+    },
+
+    '& label.Mui-focused': {
+      color: ' #000',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#fff',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: '1px solid #20a8d8',
+        borderRadius: '19px'
+      },
+      '&:hover fieldset': {
+        borderColor: ' #20a8d8',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: ' #20a8d8',
+      },
+    },
+  },
+})(FixedTextField);
+
+// const collectionsOptions = [
+//   { value: 'nancy_b_color', label: 'Nancy B Color' },
+//   { value: 'nancy_b_fashion', label: 'Nancy B Fashion' },
+//   { value: 'carla', label: 'Carla' }
+// ]
 const collectionsOptions = [
-  {value: 'nancy_b_color', label: 'Nancy B Color'},
-  {value: 'nancy_b_fashion', label: 'Nancy B Fashion'},
-  {value: 'carla', label: 'Carla'}
+  { title: 'Nancy B Color' },
+  { title: 'Nancy B Fashion' },
+  { title: 'Carla' },
 ]
 
-const stylesOptions = [
-  {value: 'rings', label: 'Rings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'necklaces', label: 'Necklaces'},
-  {value: 'earring_charm', label: 'Earring Charm'},
-  {value: 'anklets', label: 'Anklets'}
+const styles = [
+  { title: 'Ring1' },
+  { title: 'Ring2' },
+  { title: 'Pendants' },
+  { title: 'Necklaces' },
+  { title: 'Earring Charm' },
 ]
 
-const alloyOptions = [
-  {value: 'ss_rose_vermeil', label: 'SS Rose Vermeil'},
-  {value: 'ss_yello_vermeil', label: 'SS Yellow Vermeil'},
-  {value: 'gold_filled', label: 'Gold Filled'},
-  {value: 'sterling_silver', label: 'Sterling Silver'},
-  {value: 'kt_14', label: '14KT'},
-  {value: 'kt_14_two_tone', label: '14KT Two Tone'},
-  {value: 'kt_14_rose_gold', label: '14KT Rose Gold'},
-  {value: 'kt_14_white_gold', label: '14KT White Gold'},
-  {value: 'kt_14_yellow_gold', label: '14KT Yellow Gold'},
-  {value: 'gc', label: 'GC'}
+const alloy = [
+  { title: 'SS Rose Vermeil' },
+  { title: 'SS Yellow Vermeil' },
+  { title: 'Gold Filled' },
+  { title: 'Sterling Silver' },
+  { title: '14KT' },
+  { title: '14KT Two Tone' },
+  { title: '14KT Rose Gold' },
+  { title: '14KT White Gold' },
+  { title: '14KT Yellow Gold' },
+  { title: 'GC' },
 ]
 
-
-const gemstoneOptions = [
-  {value: 'other_stones', label: 'Other Stones'},
-  {value: 'synthetic', label: 'Synthetic'},
-  {value: 'semi_precious', label: 'Semi Precious'},
-  {value: 'precious', label: 'Precious'},
-  {value: 'pearl', label: 'Pearl'},
-  {value: 'onyx', label: 'Onyx'},
-  {value: 'opal', label: 'Opal'},
-  {value: 'no_stone', label: 'No Stone'},
+const gemstones = [
+  { title: 'Other Stones' },
+  { title: 'Synthetic' },
+  { title: 'Semi Precious' },
+  { title: 'Precious' },
+  { title: 'Pearl' },
+  { title: 'Onyx' },
+  { title: 'Opal' },
+  { title: 'No Stone' },
 ]
 
-const specialOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const special = [
+  { title: 'Hoop Earrings' },
+  { title: 'Pendants' },
+  { title: 'Silver' },
+  { title: 'Leather' },
+  { title: 'Non-Pierced Earrings' },
+  { title: 'Ear Climber' },
+  { title: 'Necklaces' },
+  { title: 'Link Bracelets' },
+  { title: 'Crosses' },
+  { title: 'Stackable Ring' },
+  { title: 'Drop Earring' },
+  { title: 'Earring Jackets' },
+  { title: 'Charms' },
+  { title: 'Slip On' },
+  { title: 'Hoop' },
+  { title: 'Cross' },
+  { title: 'Stud Earring' },
+  { title: 'fvs' },
 ]
 
-const promotionalOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const promotional = [
+  { title: 'Close Out' },
+  { title: 'Stud Earrings' },
+  { title: 'Over Stock' },
+  { title: 'Drop Necklaces' },
+  { title: 'Drop Earrings' },
+  { title: 'Hoops!' },
+  { title: 'Holiday Hoop Collection' },
+  { title: 'Top Selling New Arrivals' },
+  { title: 'Big' },
+  { title: 'Price Points Promo' },
+  { title: 'JCK 2019' },
 ]
 
-const marketingOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const marketing = [
+  { title: 'rwefds' },
+  { title: 'jhgfds' },
+  { title: 'dscas' },
 ]
 
-const categoriesOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const catagories = [
+  { title: 'Etchings' },
+  { title: 'BWC' },
+  { title: 'Box Sets' },
+  { title: 'Baby' },
+  { title: 'Avenues Collection' },
 ]
 
-const tagsOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const tags = [
+  { title: 'Moon1' },
+  { title: 'Moon2' },
+  { title: 'Moon3' },
+  { title: 'Moon4' },
 ]
 
-const stoneColorOptions = [
-  {value: 'hoop_earring', label: 'Hoop Earrings'},
-  {value: 'pendants', label: 'Pendants'},
-  {value: 'silver', label: 'Silver'},
-  {value: 'leather', label: 'Leather'},
+const stone = [
+  { title: 'Citrine' },
+  { title: 'Chrysoprase' },
+  { title: 'Champagne Pearl' },
+  { title: 'Caribbean Blue Chalcedony' },
+  { title: 'Cameo' },
+  { title: 'Brown Moonstone' },
+  { title: 'Bronze Pearl' },
+  { title: 'Bronze Mother of Pearl' },
+]
+
+const inventorystock = [
+  { title: 'Enalble' },
+  { title: 'Disable' },
+]
+
+const inventoryorder = [
+  { title: 'Allow' },
+  { title: 'Do Not Allow' },
+  { title: 'Allow But Notify Customer' },
+]
+
+const inventorysold = [
+  { title: 'Enalble' },
+  { title: 'Disable' },
+]
+
+const shipping = [
+  { title: 'No Shipping' },
+  { title: 'UPS Ground' },
+  { title: 'UPS 2-Day' },
+  { title: 'UPS 3-Day' },
+  { title: 'UPS Next Day' },
+  { title: 'FedEx 2-Day' },
+  { title: 'FedEx 3-Day' },
+  { title: 'FedEx Overnight' },
 ]
 
 const CreateProduct = () => {
@@ -105,448 +203,397 @@ const CreateProduct = () => {
   const [accordion, setAccordion] = useState(0)
   const [fade, setFade] = useState(true)
   const [selectedData, setSelectedData] = useState({})
+  const [file, setFile] = React.useState("");
+  const [imagePreviewUrl, setImagePreviewUrl] = React.useState("");
+  const [isinformation, setInformation] = React.useState(true);
+  const [iscollection, setCollection] = React.useState(false);
+  const [ispricing, setPricing] = React.useState(false);
+  const [isinventory, setInventory] = React.useState(false);
+  const [isshipping, setShipping] = React.useState(false);
 
-  // const toggle = (e) => {
-  //   setCollapse(!collapse)
-  //   e.preventDefault()
-  // }
+  const Edit = ({
+    onSubmit,
+    children,
+  }) => {
+    return (
+      <div>
+        <form onSubmit={onSubmit}>
+          {/* <h1 style={{ color: '#e91e63' }}>Profile Card</h1> */}
+          {children}
+        </form>
+      </div>
+    );
+  }
 
-  // const toggleMulti = (type) => {
-  //   let newCollapse = collapseMulti.slice()
-  //   switch (type) {
-  //     case "left":
-  //       newCollapse[0] = !collapseMulti[0];
-  //       break;
-  //     case "right":
-  //       newCollapse[1] = !collapseMulti[1];
-  //       break;
-  //     case "both":
-  //       newCollapse[0] = !collapseMulti[0];
-  //       newCollapse[1] = !collapseMulti[1];
-  //       break;
-  //     default:
-  //   }
-  //   setCollapseMulti(newCollapse)
-  // }
 
-  // const toggleFade = () => {
-  //   setFade(!fade)
-  // }
+  const ImgUpload = ({
+    onChange,
+    src,
+  }) => {
+    return (
+      <label htmlFor="photo-upload" className="custom-file-upload fas">
+        <div className="img-wrap img-upload" >
+          <img htmlFor="photo-upload" src={src} style={{ width: '100%', height: '100%', objectFit: 'fill' }} />
+        </div>
+        <input id="photo-upload" type="file" onChange={onChange} style={{ display: 'none' }} />
+      </label>
+    );
+  }
+
+  const photoUpload = (e) => {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    reader.onloadend = () => {
+      setFile(file);
+      setImagePreviewUrl(reader.result);
+    }
+    reader.readAsDataURL(file);
+  }
 
   const onDualListChange = (type, selected) => {
     console.log(type, selected)
-    const data = {...selectedData, type: selected}
+    const data = { ...selectedData, type: selected }
     setSelectedData(data)
   }
 
   return (
     <TheLayout>
       <CCard>
-          <CCardHeader>
-            Collapse
+        <CCardHeader>
+          Collapse
             <small> accordion</small>
-          </CCardHeader>
-          <CCardBody>
-            <div id="accordion">
-              <CCard className="mb-0">
+        </CCardHeader>
+        <CCardBody>
+          <div id="accordion">
+            <Row style={{ marginBottom: 30 }}>
+              <Col xs={12} sm={12} lg={12}>
                 <CCardHeader id="headingOne">
-                  <CButton 
-                    block 
-                    color="link" 
-                    className="text-left m-0 p-0 no-box-shadow" 
-                    onClick={() => setAccordion(accordion === 0 ? null : 0)}
+                  <CButton
+                    block
+                    className="text-left m-0 p-0 no-box-shadow"
+                    onClick={() => { setInformation(!isinformation) }}
                   >
                     <h5 className="m-0 p-0">General Information</h5>
                   </CButton>
                 </CCardHeader>
-                <CCollapse show={accordion === 0}>
-                  <CCardBody>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="product_name">Product Name</CLabel>
-                          <CInput id="product_name" placeholder="Enter product name" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="retail_name">Retail Price</CLabel>
-                          <CInput type='number' id="retail_price" placeholder="Enter retail price" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="sku">SKU</CLabel>
-                          <CInput id="sku" placeholder="Enter product sku" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="upload_image">Upload Image</CLabel>
-                          <input type='file' id="upload_image" required style={{display: 'block'}}/>
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="description">Short Description</CLabel>
-                          <CTextarea id="description" placeholder="Enter product short description" minLength={5} required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol xs='12' className='text-right'>
-                        <CButton color='primary'>Upload</CButton>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-              <CCard className="mb-0">
-                <CCardHeader id="headingTwo">
-                  <CButton 
-                    block 
-                    color="link" 
-                    className="text-left m-0 p-0 no-box-shadow" 
-                    onClick={() => setAccordion(accordion === 1 ? null : 1)}
+                <Collapse isOpen={isinformation}>
+                  <Card>
+                    <CardBody>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Product Name</div>
+                          <CssTextField
+                            placeholder="Enter product name"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Retail Price</div>
+                          <CssTextField
+                            placeholder="Enter retail price"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Upload Image</div>
+                          <Row>
+                            <Col xs={12} sm={7} lg={7}>
+                              <Edit onSubmit={(e) => this.handleSubmit(e)}>
+                                <ImgUpload onChange={(e) => photoUpload(e)} src={imagePreviewUrl !== "" ? imagePreviewUrl : "https://github.com/OlgaKoplik/CodePen/blob/master/profile.jpg?raw=true"} />
+                              </Edit>
+                            </Col>
+                            <Col xs={12} sm={5} lg={5} style={{ alignSelf: 'flex-end' }}>
+                              <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                                <Button variant="contained" color="primary" style={{ backgroundColor: '#db4b31' }}>
+                                  UPLOAD
+                                </Button>
+                              </div>
+                            </Col>
+                          </Row>
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Short Description</div>
+                          <CssTextField
+                            style={{ width: '100%', padding: 10 }}
+                            multiline
+                            rows={10}
+                            placeholder="Enter short description"
+                          />
+                        </Col>
+                      </Row>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+              </Col>
+            </Row>
+            <Row style={{ marginBottom: 30 }}>
+              <Col xs={12} sm={12} lg={12}>
+                <CCardHeader id="headingOne">
+                  <CButton
+                    block
+                    className="text-left m-0 p-0 no-box-shadow"
+                    onClick={() => { setCollection(!iscollection) }}
                   >
                     <h5 className="m-0 p-0">Map Collections</h5>
                   </CButton>
                 </CCardHeader>
-                <CCollapse show={accordion === 1}>
-                  <CCardBody>
-                    <CCardHeader>
-                      Collections
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={collectionsOptions}
-                          selected={selectedData['collections']}
-                          onChange={(selected)=>onDualListChange('collections', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Styles
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={stylesOptions}
-                          selected={selectedData['styles']}
-                          onChange={(selected)=>onDualListChange('styles', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Alloy/Metal
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={alloyOptions}
-                          selected={selectedData['alloy']}
-                          onChange={(selected)=>onDualListChange('alloy', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Gemstones
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={gemstoneOptions}
-                          selected={selectedData['gemstone']}
-                          onChange={(selected)=>onDualListChange('gemstone', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Special Collections
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={specialOptions}
-                          selected={selectedData['special_collection']}
-                          onChange={(selected)=>onDualListChange('special_collection', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Promotional
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={promotionalOptions}
-                          selected={selectedData['promotional']}
-                          onChange={(selected)=>onDualListChange('promotional', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Marketing Group
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={marketingOptions}
-                          selected={selectedData['marketing']}
-                          onChange={(selected)=>onDualListChange('marketing', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Categories
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={categoriesOptions}
-                          selected={selectedData['categories']}
-                          onChange={(selected)=>onDualListChange('categories', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Tags
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={tagsOptions}
-                          selected={selectedData['tags']}
-                          onChange={(selected)=>onDualListChange('tags', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CCardHeader>
-                      Stone Color
-                    </CCardHeader>
-                    <CRow>
-                      <CCol xs={12}>
-                        <CFormGroup>
-                        <DualListBox
-                          options={stoneColorOptions}
-                          selected={selectedData['stoneColor']}
-                          onChange={(selected)=>onDualListChange('stoneColor', selected)}
-                        />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-              <CCard className="mb-0">
-                <CCardHeader id="headingThree">
-                  <CButton 
-                    block 
-                    color="link" 
-                    className="text-left m-0 p-0 no-box-shadow" 
-                    onClick={() => setAccordion(accordion === 2 ? null : 2)}
+                <Collapse isOpen={iscollection}>
+                  <Card>
+                    <CardBody>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Collections"} leftItem={collectionsOptions} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Styles"} leftItem={styles} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Alloy/Metal"} leftItem={alloy} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Gemstones"} leftItem={gemstones} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Special Collection"} leftItem={special} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Promotional"} leftItem={promotional} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Marketing Group"} leftItem={marketing} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Categories"} leftItem={catagories} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Tags"} leftItem={tags} />
+                        </Col>
+                      </Row>
+                      <Row style={{ marginBottom: 30 }}>
+                        <Col xs={12} sm={12} lg={12}>
+                          <TransferList title={"Stone Color"} leftItem={stone} />
+                        </Col>
+                      </Row>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+              </Col>
+            </Row>
+            <Row style={{ marginBottom: 30 }}>
+              <Col xs={12} sm={12} lg={12}>
+                <CCardHeader id="headingOne">
+                  <CButton
+                    block
+                    className="text-left m-0 p-0 no-box-shadow"
+                    onClick={() => { setPricing(!ispricing) }}
                   >
                     <h5 className="m-0 p-0">Pricing</h5>
                   </CButton>
                 </CCardHeader>
-                <CCollapse show={accordion === 2}>
-                  <CCardBody>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="regular_price">Regular Price ($)</CLabel>
-                          <CInput type='number' id="regular_price" placeholder="Enter regular price" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="sale_price">Sale Price</CLabel>
-                          <CInput type='number' id="sale_price" placeholder="Enter sale price" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="surcharge">Surcharge ($)</CLabel>
-                          <CInput type='number' id="surcharge" placeholder="Enter surcharge" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="best_cost">Base Cost ($)</CLabel>
-                          <CInput type='number' id="best_cost" placeholder="Enter base cost" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="base_increment">Base Increment ($)</CLabel>
-                          <CInput type='number' id="base_increment" placeholder="Enter base increment" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="current_gold_price">Current Gold Price ($)</CLabel>
-                          <CInput type='number' id="current_gold_price" placeholder="Enter current gold price" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-              <CCard className="mb-0">
-                <CCardHeader id="headingThree">
-                  <CButton 
-                    block 
-                    color="link" 
-                    className="text-left m-0 p-0 no-box-shadow" 
-                    onClick={() => setAccordion(accordion === 3 ? null : 3)}
+                <Collapse isOpen={ispricing}>
+                  <Card>
+                    <CardBody>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Regular Price ($)</div>
+                          <CssTextField
+                            placeholder="Enter regular price"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Sale Price</div>
+                          <CssTextField
+                            placeholder="Enter sale price"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Surcharge ($)</div>
+                          <CssTextField
+                            placeholder="Enter surcharge"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Base Cost ($)</div>
+                          <CssTextField
+                            placeholder="Enter base cost"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Base Increment ($)</div>
+                          <CssTextField
+                            placeholder="Enter base increment"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Current Gold Price ($)</div>
+                          <CssTextField
+                            placeholder="Enter current gold price"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+              </Col>
+            </Row>
+
+            <Row style={{ marginBottom: 30 }}>
+              <Col xs={12} sm={12} lg={12}>
+                <CCardHeader id="headingOne">
+                  <CButton
+                    block
+                    className="text-left m-0 p-0 no-box-shadow"
+                    onClick={() => { setInventory(!isinventory) }}
                   >
                     <h5 className="m-0 p-0">Inventory</h5>
                   </CButton>
                 </CCardHeader>
-                <CCollapse show={accordion === 3}>
-                  <CCardBody>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="mange_stock">Manage Stock</CLabel>
-                          <CSelect id="manage_stock" required>
-                            <option value='enable'>Enable</option>
-                            <option value='disable'>Disable</option>
-                          </CSelect>
-                          
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="stock_quantity">Stock Quantity</CLabel>
-                          <CInput type='number' id="stock_quantity" placeholder="Enter stock quantity" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="allow_back_orders">Allow Back Orders</CLabel>
-                          <CSelect id="allow_back_orders" required>
-                            <option value=''>Select</option>
-                            <option value='allow'>Allow</option>
-                            <option value='not_allow'>Do Not allow</option>
-                            <option value='conditional_allow'>Allow But Notify Customer</option>
-                          </CSelect>
-                          
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="sold_individually">Sold Individually</CLabel>
-                          <CSelect id="sold_individually" required>
-                            <option value='enable'>Enable</option>
-                            <option value='disable'>Disable</option>
-                          </CSelect>
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-              <CCard className="mb-0">
-                <CCardHeader id="headingThree">
-                  <CButton 
-                    block 
-                    color="link" 
-                    className="text-left m-0 p-0 no-box-shadow" 
-                    onClick={() => setAccordion(accordion === 4 ? null : 4)}
+                <Collapse isOpen={isinventory}>
+                  <Card>
+                    <CardBody>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Mange Stock</div>
+                          <Autocomplete
+                            options={inventorystock}
+                            getOptionLabel={(option) => option.title}
+                            style={{ width: '100%', padding: 10 }}
+                            renderInput={(params) => <CssTextField {...params} />}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Stock Quantity</div>
+                          <CssTextField
+                            placeholder="Enter stock quantity"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Allow Back Orders</div>
+                          <Autocomplete
+                            options={inventoryorder}
+                            getOptionLabel={(option) => option.title}
+                            style={{ width: '100%', padding: 10 }}
+                            renderInput={(params) => <CssTextField {...params} />}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Sold Individually</div>
+                          <Autocomplete
+                            options={inventorysold}
+                            getOptionLabel={(option) => option.title}
+                            style={{ width: '100%', padding: 10 }}
+                            renderInput={(params) => <CssTextField {...params} />}
+                          />
+                        </Col>
+                      </Row>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+              </Col>
+            </Row>
+            <Row style={{ marginBottom: 30 }}>
+              <Col xs={12} sm={12} lg={12}>
+                <CCardHeader id="headingOne">
+                  <CButton
+                    block
+                    className="text-left m-0 p-0 no-box-shadow"
+                    onClick={() => { setShipping(!isshipping) }}
                   >
                     <h5 className="m-0 p-0">Shipping</h5>
                   </CButton>
                 </CCardHeader>
-                <CCollapse show={accordion === 4}>
-                  <CCardBody>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="weight">Weight (oz)</CLabel>
-                          <CInput type='number' id="weight" placeholder="Enter weight" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="length">Length (in)</CLabel>
-                          <CInput type='number' id="length" placeholder="Enter length" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="width">Width (in)</CLabel>
-                          <CInput type='number' id="width" placeholder="Enter width" required />
-                        </CFormGroup>
-                      </CCol>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="height">Height (in)</CLabel>
-                          <CInput type='number' id="height" placeholder="Enter height" required />
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                    <CRow>
-                      <CCol md={6} xs={12}>
-                        <CFormGroup>
-                          <CLabel htmlFor="shipping_class">Shipping Class</CLabel>
-                          <CSelect id="sold_individually" required>
-                            <option value='no_shipping'>No Shipping</option>
-                            <option value='ups_ground'>UPS Ground</option>
-                            <option value='ups_ground_2'>UPS 2-Day</option>
-                            <option value='ups_ground_3'>UPS 3-Day</option>
-                            <option value='ups_ground_next'>UPS Next Day</option>
-                            <option value='ups_ground_next'>UPS Next Day</option>
-                            <option value='fed_ex_2'>FedEX 2-Day</option>
-                            <option value='fed_ex_3'>FedEX 3-Day</option>
-                            <option value='fed_ex_overnight'>FedEX Overnight</option>
-                          </CSelect>
-                        </CFormGroup>
-                      </CCol>
-                    </CRow>
-                  </CCardBody>
-                </CCollapse>
-              </CCard>
-            </div>
-          </CCardBody>
-
-          <CRow>
-            <CCol xs={12} className='text-center'>
-              <CButton color='primary' className='m-4'>Submit</CButton>
-            </CCol>
-          </CRow>
-        </CCard>
+                <Collapse isOpen={isshipping}>
+                  <Card>
+                    <CardBody>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Weight (oz)</div>
+                          <CssTextField
+                            placeholder="Enter weight"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Length (in)</div>
+                          <CssTextField
+                            placeholder="Enter length"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>width (in)</div>
+                          <CssTextField
+                            placeholder="Enter width"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Height (in)</div>
+                          <CssTextField
+                            placeholder="Enter height"
+                            style={{ width: '100%', marginBottom: '1vh', padding: 10 }}
+                          />
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={12} sm={6} lg={6}>
+                          <div className={Styles.txtcss}>Shipping Class</div>
+                          <Autocomplete
+                            options={shipping}
+                            getOptionLabel={(option) => option.title}
+                            style={{ width: '100%', padding: 10 }}
+                            renderInput={(params) => <CssTextField {...params} />}
+                          />
+                        </Col>
+                      </Row>
+                    </CardBody>
+                  </Card>
+                </Collapse>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} style={{ textAlign: 'center', marginBottom: 30, marginTop: 30 }}>
+                <Button variant="contained" color="primary" style={{ backgroundColor: '#db4b31' }}>
+                  SUBMIT
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        </CCardBody>
+      </CCard>
     </TheLayout>
   )
 }

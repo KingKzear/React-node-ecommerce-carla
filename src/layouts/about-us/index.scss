@@ -1,4 +1,5 @@
 .about-us-container {
+  color: #999;
   .page-top {
     width: 100%;
     margin-bottom: 50px;
@@ -24,7 +25,8 @@
           }
         }
         .desc {
-          text-align: center;
+          text-align: left;
+          color: #999;
         }
         
       }

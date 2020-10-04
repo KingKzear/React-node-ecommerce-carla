@@ -2,9 +2,11 @@
   padding: 20px 0;
   
   .filter {
-    width: 300px;
+    width: 100%;
 
     .filter-item {
+      margin-top: 10px;
+      margin-bottom: 30px;
       select {
         width: 80%;
       }
@@ -16,12 +18,22 @@
       }
       .price-range {
         width: 80%;
+        .price-value{
+          width: 100% !important;
+          justify-content: space-between !important;
+          display: flex !important;
+          align-items: center !important;
+          margin-top: 10px !important;
+          margin-bottom: 10px !important;
+        }
         .input-values {
           display: flex;
-          justify-content: start;
+          justify-content: space-between;
+          width: 100%;
           
           div.splitter {
-            padding: 0 10px;
+            // padding: 0 10px;
+            width: 2%;
           }
           div {
             display: flex;

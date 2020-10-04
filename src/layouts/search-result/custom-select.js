@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Capitalizer } from './../../util/func-util'
 import './index.scss'
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 function CustomSelect(props) {
   const { data, name, replaceChar, onChange } = props
@@ -9,6 +12,7 @@ function CustomSelect(props) {
   const renderOptions = () => {
     let result = []
     result.push(<option value='0'>All {Capitalizer(name, replaceChar)}</option>)
+    // result.push(<option aria-label="None" value="" />);
     console.log(data)
     data.forEach((el, index) => {
       result.push(<option key={index} value={el.id}>{el.name}</option>)
@@ -22,10 +26,23 @@ function CustomSelect(props) {
     onChange(name, value)
   }
 
-  return(
-    <select onChange={onSelectChange}>
-      {renderOptions()}
-    </select>
+  return (
+    <FormControl
+      variant="outlined"
+      onChange={onSelectChange}
+      style={{ width: '100%' }}
+    >
+      <InputLabel htmlFor="outlined-age-native-simple">{Capitalizer(name, replaceChar)}</InputLabel>
+      <Select
+        native
+        label="ALL COLLECTION"
+      >
+        {renderOptions()}
+      </Select>
+    </FormControl>
+    // <select onChange={onSelectChange}>
+    //   {renderOptions()}
+    // </select>
   )
 }
 

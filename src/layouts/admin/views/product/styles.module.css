@@ -1,0 +1,52 @@
+.container {
+  margin-top: 3vh;
+}
+
+.locationDiv {
+  width: 100%;
+  background-color: #db4b31;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.txtcss {
+  font-size: 17px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.allusers {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3vh;
+}
+
+.pagenationDiv {
+  justify-content: center;
+  display: flex;
+  margin-top: 3vh;
+}
+
+.pagination {
+  width: 350px
+}
+
+.btnAdd {
+  background-color: #db4b31 !important;
+  margin-bottom: 10px !important;
+}
+
+.content {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px
+}
