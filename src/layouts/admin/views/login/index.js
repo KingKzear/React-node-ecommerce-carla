@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {
   CButton,
   CCard,
@@ -22,30 +22,22 @@ import { LoginValidator } from '../../../../util/validator'
 import useForm from './../../../../util/useForm'
 import AuthService from './../../../../service/auth.service'
 import { loginSuccess } from './../../../../actions/auth'
-import './index.scss';
-import Snack from '../../../../components/snackbar';
+import './index.scss'
 
 const Login = (props) => {
   const { loginSuccess } = props
-  const [type, setType] = React.useState("");
-  const [SMScontent, setSMScontent] = React.useState("");
-
+  
   const onLogin = () => {
     AuthService.login(values.username, values.password)
-      .then(response => {
-        if (response.data.accessToken) {
-          console.log(response.data)
-          loginSuccess({ ...response.data })
-          history.push('/admin/dashboard')
-        }
+    .then(response=>{
+      if (response.data.accessToken) {
+        console.log(response.data)
+        loginSuccess({...response.data})
+        history.push('/admin/dashboard')
+      }
 
-        return response.data;
-      })
-      .catch(error => {
-        setSMScontent(error.response.data.message);
-        setType("error");
-        document.getElementById('btn_snack').click();
-      })
+      return response.data;
+    }) 
   }
 
   const {
@@ -58,7 +50,6 @@ const Login = (props) => {
 
   return (
     <AdminWrapper>
-      <Snack type={type} content={SMScontent} />
       <div className="c-app c-default-layout flex-row align-items-center">
         <CContainer>
           <CRow className="justify-content-center">
@@ -75,7 +66,7 @@ const Login = (props) => {
                             <CIcon name="cil-user" />
                           </CInputGroupText>
                         </CInputGroupPrepend>
-                        <CInput type="text" name='username' placeholder="Username" autoComplete="username" onChange={handleChange} />
+                        <CInput type="text" name='username' placeholder="Username" autoComplete="username" onChange={handleChange}/>
                       </CInputGroup>
                       {errors.username && (
                         <p className="help is-danger">{errors.username}</p>
@@ -86,7 +77,7 @@ const Login = (props) => {
                             <CIcon name="cil-lock-locked" />
                           </CInputGroupText>
                         </CInputGroupPrepend>
-                        <CInput type="password" name='password' placeholder="Password" autoComplete="current-password" onChange={handleChange} />
+                        <CInput type="password" name='password' placeholder="Password" autoComplete="current-password" onChange={handleChange}/>
                       </CInputGroup>
                       {errors.password && (
                         <p className="help is-danger">{errors.password}</p>
@@ -129,9 +120,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginSuccess: (user) => {
-      dispatch(loginSuccess(user))
-    },
+      loginSuccess: (user) => {
+          dispatch(loginSuccess(user))
+      },
   }
 };
 

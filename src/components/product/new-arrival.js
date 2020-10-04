@@ -12,7 +12,7 @@ function NewArrival(props) {
       productName: 'Shop 14KT ‌Yellow Gold Hoop Earrings',
       url: 'https://c.zmags.com/assets/images/5d545f63ad04230f4a9e8faa_300x300.jpeg',
       type: 'social'
-    },
+    },      
     {
       productId: '1123',
       note: '#1 SELLING STYLE OF EARRINGS 2',
@@ -24,26 +24,26 @@ function NewArrival(props) {
 
   const renderContent = () => {
     let result = []
-
+    
     data.forEach((el, index) => {
       let subResult = []
-      for (let i = 0; i < 4; i++) {
+      for(let i = 0; i < 4; i++) {
         subResult.push(<WhiteBackProduct key={i} product={el} />)
       }
       result.push(<Carousel.Item><Row>{subResult}</Row></Carousel.Item>)
     });
-    if (result.length == 0)
+    if(result.length == 0) 
       return result
     else
       return <Carousel
-        prevIcon={<ChevronLeft />}
-        nextIcon={<ChevronRight />}
+      prevIcon={<ChevronLeft />}
+      nextIcon={<ChevronRight />}
       >
         {result}
       </Carousel>
   }
 
-  return (
+  return(
     <div className='gallery-page'>
       {renderContent()}
     </div>

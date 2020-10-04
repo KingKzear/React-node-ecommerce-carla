@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Pagination } from '@material-ui/lab'
-import { Row, Col } from 'react-bootstrap'
+import { Row , Col } from 'react-bootstrap'
 import ProductDetail from './../../components/product/product-detail'
 import { ITEMS_PER_PAGES } from './../../const/constant'
 import CustomLabel from './../../components/elements/custom-label'
 import './index.scss'
-import Styles from './style.module.css'
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 function FilteredItems(props) {
   const [total, setTotal] = useState(8374)
@@ -31,21 +27,21 @@ function FilteredItems(props) {
     const product = {
       productId: '90315GA',
       productName: '14KY 7X5 OVAL GARNET ',
-      url: 'https://carlacorp.com/wp-content/uploads/product_images/21-4160.jpg',
+      url: 'http://35.196.33.142:8060/DownloadImageFromInstance?imageId=90315GA.jpg',
     }
     let result = []
     let subResult = []
-    for (let i = 0; i < itemsPerPage; i++) {
-      if (i > 0 && i % 3 == 0) {
-        result.push(<Row style={{ width: '100%' }}>{subResult}</Row>)
+    for(let i = 0; i < itemsPerPage; i++) {
+      if(i > 0 && i % 3 == 0){
+        result.push(<Row>{subResult}</Row>)
         subResult = []
-        subResult.push(<ProductDetail key={i} product={product} />)
-      } else if (i == itemsPerPage - 1) {
-        subResult.push(<ProductDetail key={i} product={product} />)
+        subResult.push(<ProductDetail key={i} product={product}/>)
+      } else if(i == itemsPerPage - 1) {
+        subResult.push(<ProductDetail key={i} product={product}/>)
         result.push(<Row>{subResult}</Row>)
       } else {
-        subResult.push(<ProductDetail key={i} product={product} />)
-      }
+        subResult.push(<ProductDetail key={i} product={product}/>)
+      }      
     }
     return result
   }
@@ -54,40 +50,24 @@ function FilteredItems(props) {
     setCurPage(value)
   }
 
-  return (
-    <div style={{ width: '100%' }}>
-      <Row>
-        <Col xs={12} lg={12} className={Styles.contentheader}>
-          <div className={Styles.total}>Found {total} results</div>
-          <FormControl
-            variant="outlined"
-            onChange={onChangeItemsPerPage}
-            style={{ width: 120 }}
-          >
-            <InputLabel htmlFor="outlined-age-native-simple">Items Per Page:</InputLabel>
-            <Select
-              native
-              label="ALL COLLECTION"
-            >
-              {renderPerPageItems()}
-            </Select>
-          </FormControl>
-        </Col>
-      </Row>
-      <Row>
-        {renderContents()}
-      </Row>
-      <Row style={{ justifyContent: 'center', marginTop: 100 }}>
-        <div>
-          <Pagination
-            count={Math.ceil(total / itemsPerPage)}
-            page={curPage}
-            color="primary"
-            onChange={onPageChange}
-          />
+  return(
+    <div className='result-container col-lg-9 col-md-12 col-sm-12 col-xs-12'>
+      <div className='header'>
+        <div className='total'>Found {total} results</div>
+        <div className='items-per-page'>
+          <CustomLabel position='left'>Items Per Page:</CustomLabel>
+          <select onChange={onChangeItemsPerPage}>
+            {renderPerPageItems()}
+          </select>
         </div>
-      </Row>
-    </div >
+      </div>
+      <div className='content'>
+        {renderContents()}
+      </div>
+      <div className='footer'>
+        <Pagination count={Math.ceil(total / itemsPerPage)} page={curPage} variant="outlined" shape="rounded" onChange={onPageChange} />
+      </div>
+    </div>
   )
 }
 

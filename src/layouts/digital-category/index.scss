@@ -3,7 +3,7 @@
     border-bottom: 3px solid var(--grey-font-color);
     .main-image {
       width: 100%;
-      padding: 10px 0;
+      padding: 10px 40px;
       position: relative;
       .button {
         position: absolute;
@@ -17,20 +17,17 @@
     }
     .warning {
       padding: 20px;
-      font-size: 25px;
+      font-size: 20px;
       font-weight: 500;
-      text-align: center;
     }
   }
   .bottom {
     .category-item {
       padding: 10px;
       .sub-container {
+        border-bottom: 3px solid var(--grey-font-color);
         .img-container {
           width: 100%;
-          border-bottom: 3px solid var(--grey-font-color);
-          padding-bottom: 30px;
-          margin-bottom: 30px;
         }
         .caption{
           color: black;

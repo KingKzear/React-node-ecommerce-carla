@@ -5,7 +5,7 @@ import './index.scss'
 function CategoryItem(props) {
   const { item } = props
 
-  return (
+  return(
     <Col md={3} className='category-item'>
       <div className='sub-container'>
         <div className='img-container'>
@@ -16,7 +16,7 @@ function CategoryItem(props) {
             {item.duration}
           </h5>
           <h5>
-            {item.label}
+          {item.label}
           </h5>
         </div>
       </div>

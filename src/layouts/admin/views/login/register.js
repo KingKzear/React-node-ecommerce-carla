@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {
   CButton,
   CCard,
@@ -25,16 +25,15 @@ import './index.scss'
 
 const AdminRegister = (props) => {
   const { loginSuccess } = props
-  const [formValues, setFormValues] = useState({ successful: false })
-
+  const [formValues, setFormValues] = useState({successful: false})
+  
   const handleRegister = () => {
     console.log(values)
     AuthService.register(values.username, values.email, values.password)
-      .then(response => {
-        // console.log("response------------->", response)
-        loginSuccess(response.data)
-        history.push('/admin/dashboard')
-      })
+    .then(response=>{
+      loginSuccess(response.data)
+      history.push('/admin/dashboard')
+    }) 
   }
 
   const {
@@ -56,59 +55,48 @@ const AdminRegister = (props) => {
                   <CForm onSubmit={handleSubmit} noValidate>
                     <h1>Register</h1>
                     <p className="text-muted">Create your account</p>
-                    <CInputGroup className={`${errors.firstname ? 'bottom-0' : 'mb-3'}`}>
+                    <CInputGroup className={`${errors.username ? 'bottom-0' : 'mb-3'}`}>
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" name='firstname' placeholder="Fistname" autoComplete="firstname" value={formValues['username']} onChange={handleChange} />
+                      <CInput type="text" name='username' placeholder="Username" autoComplete="username" value={formValues['username']} onChange={handleChange}/>
                     </CInputGroup>
-                    {errors.firstname && (
-                      <p className="help is-danger">{errors.firstname}</p>
-                    )}
-                    <CInputGroup className={`${errors.lastname ? 'bottom-0' : 'mb-3'}`}>
-                      <CInputGroupPrepend>
-                        <CInputGroupText>
-                          <CIcon name="cil-user" />
-                        </CInputGroupText>
-                      </CInputGroupPrepend>
-                      <CInput type="text" name='lastname' placeholder="Lastname" autoComplete="lastname" value={formValues['username']} onChange={handleChange} />
-                    </CInputGroup>
-                    {errors.lastname && (
-                      <p className="help is-danger">{errors.lastname}</p>
-                    )}
+                    {errors.username && (
+                        <p className="help is-danger">{errors.username}</p>
+                      )}
                     <CInputGroup className={`${errors.email ? 'bottom-0' : 'mb-3'}`}>
                       <CInputGroupPrepend>
                         <CInputGroupText>@</CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" name='email' placeholder="Email" autoComplete="email" value={formValues['email']} onChange={handleChange} />
+                      <CInput type="text" name='email' placeholder="Email" autoComplete="email"  value={formValues['email']} onChange={handleChange}/>
                     </CInputGroup>
                     {errors.email && (
-                      <p className="help is-danger">{errors.email}</p>
-                    )}
+                        <p className="help is-danger">{errors.email}</p>
+                      )}
                     <CInputGroup className={`${errors.password ? 'bottom-0' : 'mb-3'}`}>
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" name='password' placeholder="Password" autoComplete="new-password" value={formValues['password']} onChange={handleChange} />
+                      <CInput type="password" name='password' placeholder="Password" autoComplete="new-password"  value={formValues['password']} onChange={handleChange}/>
                     </CInputGroup>
                     {errors.password && (
-                      <p className="help is-danger">{errors.password}</p>
-                    )}
+                        <p className="help is-danger">{errors.password}</p>
+                      )}
                     <CInputGroup className={`${errors.repeat_password ? 'bottom-0' : 'mb-4'}`}>
                       <CInputGroupPrepend>
                         <CInputGroupText>
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" name='repeat_password' placeholder="Repeat password" autoComplete="new-password" value={formValues['repeat_password']} onChange={handleChange} />
+                      <CInput type="password" name='repeat_password' placeholder="Repeat password" autoComplete="new-password"  value={formValues['repeat_password']} onChange={handleChange}/>
                     </CInputGroup>
                     {errors.repeat_password && (
-                      <p className="help is-danger">{errors.repeat_password}</p>
-                    )}
+                        <p className="help is-danger">{errors.repeat_password}</p>
+                      )}
                     <CButton type='submit' color="success" block>Create Account</CButton>
                   </CForm >
                 </CCardBody>
@@ -127,9 +115,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginSuccess: (user) => {
-      dispatch(loginSuccess(user))
-    },
+      loginSuccess: (user) => {
+          dispatch(loginSuccess(user))
+      },
   }
 };
 

@@ -5,7 +5,7 @@ import Card from './../elements/card'
 import './../index.scss'
 
 function MeetFamily(props) {
-  const pageTopUrl = './resources/FAMILY_SLIDER_1-1024x581.png'
+  const pageTopUrl = 'http://35.196.33.142:8060/f64743228dd1a9bb10c3f9335dc0f95c.png'
   
   const renderContents = () => {
     const data = [

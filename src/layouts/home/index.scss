@@ -13,8 +13,7 @@
         width: 100%;
         height: 100%;
 
-        .carousel-control-prev,
-        .carousel-control-next {
+        .carousel-control-prev, .carousel-control-next {
           display: none;
         }
 
@@ -35,6 +34,7 @@
           }
         }
 
+        
         .carousel-inner {
           width: 100%;
           height: 100%;
@@ -45,16 +45,15 @@
 
             .carousel-item-caption {
               position: absolute;
-
+              
               .note {
                 color: var(--grey-font-color);
                 text-align: center;
                 height: 10%;
                 font-weight: 500;
-                font-size: calc(
-                  28px + (61 - 28) * ((100vw - 767px) / (1600 - 767))
-                );
+                font-size: calc(28px + (61 - 28) * ((100vw - 767px) / (1600 - 767)));
               }
+
 
               .show-now {
                 position: relative;
@@ -63,23 +62,20 @@
                 .product-name {
                   color: var(--grey-font-color);
                   text-align: center;
-                  font-size: calc(
-                    15px + (30 - 15) * (100vw - 767px) / (1600 - 767)
-                  ) !important;
+                  font-size: calc(15px + (30 - 15) * (100vw - 767px) / (1600 - 767)) !important;
                   margin: 25px 0;
                 }
                 .italic-label {
                   font-style: italic;
                   margin-top: 15px;
-                  font-size: calc(
-                    14px + (24 - 14) * (100vw - 767px) / (1600 - 767)
-                  ) !important;
+                  font-size: calc(14px + (24 - 14) * (100vw - 767px) / (1600 - 767)) !important;
                 }
+                
               }
             }
-          }
+          }  
 
-          .carousel-item:nth-child(3n + 1) {
+          .carousel-item:nth-child(3n+1) {
             .carousel-item-caption {
               width: 45%;
               text-align: center;
@@ -88,7 +84,7 @@
               left: 30%;
             }
           }
-          .carousel-item:nth-child(3n + 2) {
+          .carousel-item:nth-child(3n+2) {
             .carousel-item-caption {
               width: 90%;
               text-align: center;
@@ -108,13 +104,5 @@
         }
       }
     }
-  }
-  .quick-div {
-    background-color: "#000";
-    color: "#fff";
-    width: "50%";
-    height: 30;
-    display: "flex";
-    align-items: "center";
   }
 }
